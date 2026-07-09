@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>guess the word emily</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8d7e8;
+      background-image:
+        radial-gradient(#ffffff 1px, transparent 1px),
+        radial-gradient(#ff9ac8 1px, transparent 1px);
+      background-size: 25px 25px;
+      background-position: 0 0, 12px 12px;
+      font-family: "Times New Roman", Georgia, serif;
+      color: #5a2146;
+    }
+
+    .page {
+      width: 720px;
+      margin: 40px auto;
+      border: 4px double #b84f82;
+      background: #fff5fb;
+      box-shadow: 8px 8px 0px #d98bb2;
+      padding: 18px;
+    }
+
+    .top-bar {
+      background: #b84f82;
+      color: white;
+      padding: 8px;
+      text-align: center;
+      font-size: 18px;
+      letter-spacing: 2px;
+      border: 2px solid #7d2d58;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 42px;
+      color: #8b2f63;
+      text-shadow: 2px 2px #ffd6ea;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 18px;
+      font-style: italic;
+      color: #7d2d58;
+      margin-bottom: 25px;
+    }
+
+    .divider {
+      text-align: center;
+      color: #b84f82;
+      font-size: 24px;
+      margin: 15px 0;
+    }
+
+    .hint-box {
+      width: 85%;
+      margin: 0 auto;
+      padding: 18px;
+      background: #ffe6f2;
+      border: 2px dashed #b84f82;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .quiz-area {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    input {
+      width: 300px;
+      padding: 8px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 18px;
+      background: #fffafc;
+      border: 2px inset #d98bb2;
+      color: #5a2146;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 7px 18px;
+      font-family: "Times New Roman", Georgia, serif;
+      font-size: 17px;
+      background: #ffd6ea;
+      color: #5a2146;
+      border: 3px outset #d98bb2;
+      cursor: pointer;
+    }
+
+    button:active {
+      border: 3px inset #d98bb2;
+    }
+
+    .result {
+      margin-top: 22px;
+      min-height: 35px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .success {
+      color: #8b2f63;
+    }
+
+    .wrong {
+      color: #9c315f;
+    }
+
+    .poem {
+      display: none;
+      width: 85%;
+      margin: 30px auto 0;
+      padding: 25px;
+      background: #fffafc;
+      border: 3px double #b84f82;
+      font-size: 19px;
+      line-height: 1.7;
+      white-space: pre-line;
+      text-align: left;
+      box-shadow: 5px 5px 0px #f0a6c8;
+    }
+
+    .poem-title {
+      text-align: center;
+      font-size: 24px;
+      color: #8b2f63;
+      margin-bottom: 15px;
+      font-style: italic;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 14px;
+      color: #7d2d58;
+    }
+
+    .blink {
+      animation: blink 1.2s infinite;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      50% { opacity: 0.25; }
+      100% { opacity: 1; }
+    }
+
+    .floating-heart {
+      position: fixed;
+      color: #b84f82;
+      font-size: 20px;
+      animation: floatUp 7s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(105vh);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-10vh);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="page">
+    <div class="top-bar">
+      welcome to my word game emily
+    </div>
+
+    <h1>guess the word emily</h1>
+
+    <p class="subtitle">
+      are you ready? i will give you 4 hints to guess the word based off the descriptors
+    </p>
+
+    <div class="divider">
+      ✧･ﾟ: *✧･ﾟ:*  *:･ﾟ✧*:･ﾟ✧
+    </div>
+
+    <div class="hint-box">
+      <p><b>Hint 1:</b> It is something I could listen to for hours</p>
+      <p><b>Hint 2:</b> It can be soft melodic and beautiful</p>
+      <p><b>Hint 3:</b> It is what i hear every time you speak.</p>
+      <p><b>Hint 4:</b> it starts with <b>v</b>, has 5 letters, and ends with <b>e</b>.</p>
+    </div>
+
+    <div class="quiz-area">
+      <p class="blink">type your guess</p>
+
+      <input type="text" id="guess" placeholder="your answer...">
+
+      <br>
+
+      <button onclick="checkAnswer()">submit</button>
+
+      <div class="result" id="result"></div>
+    </div>
+
+    <div class="poem" id="poem">
+      <div class="poem-title">Dear Emily,</div>
+Your voice has a tide in it—
+not rushing, not asking,
+only returning with such certainty
+that the shore forgets
+it was ever separate from the sea.
+
+I could listen for hours,
+drawn past reason,
+as sailors once leaned toward singing
+they knew might undo them.
+
+But yours is not a cruel music.
+It does not drag me under.
+It gathers the dark around me gently
+and teaches it to shimmer.
+
+Each word arrives deliberate,
+silvered, almost fated,
+as though silence itself
+had been waiting for your mouth
+to give it shape.
+
+And when you speak softly,
+the world loses its edges—
+the room, the hour, my own restless heart—
+all of it held still
+by a melody
+I would follow anywhere.
+    </div>
+
+    <div class="divider">
+      ♡ ♡ ♡
+    </div>
+
+    <div class="footer">
+      u have infinite tries dw!
+    </div>
+  </div>
+
+  <script>
+    function checkAnswer() {
+      const guess = document.getElementById("guess").value.trim().toLowerCase();
+      const result = document.getElementById("result");
+      const poem = document.getElementById("poem");
+
+      if (guess === "voice") {
+        result.innerHTML = "good job emily";
+        result.className = "result success";
+        poem.style.display = "block";
+      } else if (guess === "") {
+        result.innerHTML = "You have to type something first.";
+        result.className = "result wrong";
+        poem.style.display = "none";
+      } else {
+        result.innerHTML = "nuh uh.";
+        result.className = "result wrong";
+        poem.style.display = "none";
+      }
+    }
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "floating-heart";
+      heart.innerHTML = "♥";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = Math.random() * 4 + 5 + "s";
+      heart.style.fontSize = Math.random() * 18 + 14 + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 8000);
+    }
+
+    setInterval(createHeart, 700);
+  </script>
+
+</body>
+</html>
